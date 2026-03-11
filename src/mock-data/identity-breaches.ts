@@ -1,0 +1,45 @@
+export const identityBreaches = [
+  {
+    id: 'breach_001',
+    serviceName: 'LinkedIn',
+    breachDate: '2025-11-15',
+    discoveredDate: '2025-12-01',
+    dataExposed: ['Email', 'Password Hash', 'Phone Number', 'Work History'],
+    severity: 'high',
+    affectedAccounts: 700000000,
+    recoverySteps: [
+      'Change your LinkedIn password immediately',
+      'Enable two-factor authentication',
+      'Review connected apps and revoke unnecessary access',
+    ],
+    isResolved: false,
+  },
+  {
+    id: 'breach_002',
+    serviceName: 'Adobe',
+    breachDate: '2025-09-20',
+    discoveredDate: '2025-10-05',
+    dataExposed: ['Email', 'Encrypted Password', 'Username'],
+    severity: 'medium',
+    affectedAccounts: 150000000,
+    recoverySteps: [
+      'Update your Adobe account password',
+      'Check for password reuse on other sites',
+    ],
+    isResolved: false,
+  },
+  {
+    id: 'breach_003',
+    serviceName: 'Canva',
+    breachDate: '2025-07-10',
+    discoveredDate: '2025-07-25',
+    dataExposed: ['Email', 'Username', 'Name'],
+    severity: 'low',
+    affectedAccounts: 137000000,
+    recoverySteps: [
+      'Change your Canva password',
+      'Monitor for suspicious emails',
+    ],
+    isResolved: true,
+  },
+];

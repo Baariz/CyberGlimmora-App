@@ -1,0 +1,32 @@
+export const userProfile = {
+  id: 'usr_001',
+  name: 'Arjun Mehta',
+  email: 'arjun.mehta@gmail.com',
+  phone: '+91 98765 43210',
+  avatar: '',
+  plan: 'basic',
+  joinedDate: '2025-08-15',
+  devicesCount: 4,
+  familyMembers: 0,
+  twoFactorEnabled: true,
+  lastLogin: new Date().toISOString(),
+  notificationPreferences: [
+    { id: 'notif_1', label: 'Scam Alerts', description: 'Get notified when scams are detected', enabled: true, category: 'scam' },
+    { id: 'notif_2', label: 'Identity Breach', description: 'Alert when your data appears in a breach', enabled: true, category: 'identity' },
+    { id: 'notif_3', label: 'Device Security', description: 'Device health and threat notifications', enabled: true, category: 'device' },
+    { id: 'notif_4', label: 'Guardian Alerts', description: 'Child safety and location updates', enabled: false, category: 'guardian' },
+    { id: 'notif_5', label: 'Weekly Report', description: 'Weekly security summary email', enabled: true, category: 'security' },
+    { id: 'notif_6', label: 'Promotional', description: 'Tips, updates, and offers', enabled: false, category: 'security' },
+  ],
+  connectedAccounts: [
+    { id: 'acc_1', provider: 'Google', email: 'arjun.mehta@gmail.com', connected: true, lastSync: new Date(Date.now() - 3600000).toISOString(), icon: 'logo-google' },
+    { id: 'acc_2', provider: 'Microsoft', email: 'arjun.work@outlook.com', connected: true, lastSync: new Date(Date.now() - 7200000).toISOString(), icon: 'logo-microsoft' },
+    { id: 'acc_3', provider: 'Facebook', email: '', connected: false, lastSync: '', icon: 'logo-facebook' },
+  ],
+  securitySettings: [
+    { id: 'sec_1', label: 'Two-Factor Authentication', description: 'Require OTP for login', enabled: true, type: 'toggle' },
+    { id: 'sec_2', label: 'Biometric Lock', description: 'Use fingerprint/face to unlock app', enabled: true, type: 'toggle' },
+    { id: 'sec_3', label: 'Login Notifications', description: 'Get notified of new login attempts', enabled: true, type: 'toggle' },
+    { id: 'sec_4', label: 'Auto-Lock', description: 'Lock app after 5 minutes of inactivity', enabled: false, type: 'toggle' },
+  ],
+};
