@@ -84,7 +84,7 @@ export default function SettingsScreen() {
   const planColor = profile.plan === 'family' ? Colors.primary : Colors.info;
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Profile Section */}
       <View style={styles.profileCard}>
         <View style={styles.profileHeader}>

@@ -4,7 +4,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '../theme/colors';
 import { useAlerts } from '../contexts/AlertContext';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import DashboardScreen from '../screens/dashboard/DashboardScreen';
 import ScamDetectionScreen from '../screens/scam/ScamDetectionScreen';
@@ -37,6 +38,68 @@ export type MoreStackParamList = {
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const MoreStack = createNativeStackNavigator<MoreStackParamList>();
+
+const TAB_ICONS: Record<string, { active: keyof typeof Ionicons.glyphMap; inactive: keyof typeof Ionicons.glyphMap }> = {
+  DashboardTab: { active: 'grid', inactive: 'grid-outline' },
+  ScamTab: { active: 'shield-checkmark', inactive: 'shield-checkmark-outline' },
+  AssistantTab: { active: 'chatbubble-ellipses', inactive: 'chatbubble-ellipses-outline' },
+  GuardianTab: { active: 'people', inactive: 'people-outline' },
+  MoreTab: { active: 'ellipsis-horizontal-circle', inactive: 'ellipsis-horizontal-outline' },
+};
+
+const TAB_LABELS: Record<string, string> = {
+  DashboardTab: 'Dashboard',
+  ScamTab: 'Scam Shield',
+  AssistantTab: 'Assistant',
+  GuardianTab: 'Guardian',
+  MoreTab: 'More',
+};
+
+function CustomTabBar({ state, descriptors, navigation }: any) {
+  const insets = useSafeAreaInsets();
+  const bottomOffset = Math.max(insets.bottom, 8);
+
+  return (
+    <View style={[styles.floatingBar, { bottom: bottomOffset }]}>
+      {state.routes.map((route: any, index: number) => {
+        const isFocused = state.index === index;
+        const icons = TAB_ICONS[route.name] || { active: 'ellipse', inactive: 'ellipse-outline' };
+        const label = TAB_LABELS[route.name] || route.name;
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        return (
+          <TouchableOpacity
+            key={route.key}
+            onPress={onPress}
+            activeOpacity={0.7}
+            style={styles.tabItem}
+          >
+            <View style={[styles.tabIconWrap, isFocused && styles.tabIconWrapActive]}>
+              <Ionicons
+                name={isFocused ? icons.active : icons.inactive}
+                size={22}
+                color={isFocused ? Colors.primary : Colors.textLight}
+              />
+            </View>
+            <Text style={[styles.tabLabel, isFocused && styles.tabLabelActive]}>
+              {label}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
+    </View>
+  );
+}
 
 function MoreMenuScreen({ navigation }: any) {
   const menuItems = [
@@ -90,21 +153,12 @@ function MoreNavigator() {
 }
 
 export default function MainTabNavigator() {
-  const { activeCount, threatLevel } = useAlerts();
+  const { activeCount } = useAlerts();
 
   return (
     <Tab.Navigator
+      tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors.primary,
-        tabBarInactiveTintColor: Colors.textLight,
-        tabBarStyle: {
-          backgroundColor: Colors.white,
-          borderTopColor: Colors.border,
-          height: 60,
-          paddingBottom: 8,
-          paddingTop: 4,
-        },
-        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
         headerStyle: { backgroundColor: Colors.navbarBg },
         headerTintColor: Colors.white,
         headerTitleStyle: { fontWeight: '600' },
@@ -115,7 +169,6 @@ export default function MainTabNavigator() {
         component={DashboardScreen}
         options={{
           title: 'Dashboard',
-          tabBarIcon: ({ color, size }) => <Ionicons name="grid-outline" size={size} color={color} />,
           headerTitle: 'CyberGlimmora',
           headerRight: () => (
             <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 16 }}>
@@ -134,44 +187,70 @@ export default function MainTabNavigator() {
       <Tab.Screen
         name="ScamTab"
         component={ScamDetectionScreen}
-        options={{
-          title: 'Scam Shield',
-          tabBarIcon: ({ color, size }) => <Ionicons name="shield-checkmark-outline" size={size} color={color} />,
-          headerTitle: 'Scam Detection',
-        }}
+        options={{ title: 'Scam Shield', headerTitle: 'Scam Detection' }}
       />
       <Tab.Screen
         name="AssistantTab"
         component={AssistantScreen}
-        options={{
-          title: 'Assistant',
-          tabBarIcon: ({ color, size }) => <Ionicons name="chatbubble-ellipses-outline" size={size} color={color} />,
-          headerTitle: 'AI Assistant',
-        }}
+        options={{ title: 'Assistant', headerTitle: 'AI Assistant' }}
       />
       <Tab.Screen
         name="GuardianTab"
         component={GuardianScreen}
-        options={{
-          title: 'Guardian',
-          tabBarIcon: ({ color, size }) => <Ionicons name="people-outline" size={size} color={color} />,
-          headerTitle: 'Child Guardian',
-        }}
+        options={{ title: 'Guardian', headerTitle: 'Child Guardian' }}
       />
       <Tab.Screen
         name="MoreTab"
         component={MoreNavigator}
-        options={{
-          title: 'More',
-          tabBarIcon: ({ color, size }) => <Ionicons name="ellipsis-horizontal-outline" size={size} color={color} />,
-          headerShown: false,
-        }}
+        options={{ title: 'More', headerShown: false }}
       />
     </Tab.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
+  floatingBar: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    flexDirection: 'row',
+    backgroundColor: Colors.white,
+    borderRadius: 24,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    elevation: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    borderWidth: 1,
+    borderColor: Colors.border + '40',
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 4,
+  },
+  tabIconWrap: {
+    width: 40,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  tabIconWrapActive: {
+    backgroundColor: Colors.primary + '15',
+  },
+  tabLabel: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: Colors.textLight,
+    marginTop: 2,
+  },
+  tabLabelActive: {
+    color: Colors.primary,
+  },
   badge: {
     position: 'absolute',
     top: -4,
@@ -193,6 +272,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.pageBg,
     padding: 16,
+    paddingBottom: 100,
   },
   moreTitle: {
     fontSize: 24,

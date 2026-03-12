@@ -103,7 +103,7 @@ export default function DeviceScreen() {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Device Hero */}
       <View style={styles.heroCard}>
         <View style={styles.heroTop}>

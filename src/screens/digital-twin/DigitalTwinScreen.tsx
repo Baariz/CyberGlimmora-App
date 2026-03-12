@@ -55,7 +55,7 @@ export default function DigitalTwinScreen() {
   const categories: ThreatCategory[] = ['device', 'identity', 'financial', 'behavior'];
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.headerCard}>
         <View style={styles.headerRow}>

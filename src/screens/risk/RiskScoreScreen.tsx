@@ -68,7 +68,7 @@ export default function RiskScoreScreen() {
     .join(' ');
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Hero Card */}
       <View style={styles.heroCard}>
         <Svg width={160} height={160} viewBox="0 0 160 160">

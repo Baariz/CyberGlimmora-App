@@ -92,7 +92,7 @@ export default function IdentityScreen() {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Identity Twin Card */}
       <View style={styles.twinCard}>
         <View style={styles.twinHeader}>

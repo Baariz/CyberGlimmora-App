@@ -72,7 +72,7 @@ function OverviewTab() {
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} color={Colors.primary} size="large" />;
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Map Placeholder */}
       <View style={styles.mapPlaceholder}>
         <Ionicons name="map-outline" size={48} color={Colors.white} />
@@ -144,7 +144,7 @@ function SafeZonesTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       <TouchableOpacity style={styles.addButton}>
         <Ionicons name="add-circle-outline" size={20} color={Colors.white} />
         <Text style={styles.addButtonText}>Add Safe Zone</Text>
@@ -192,7 +192,7 @@ function ThreatsTab() {
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} color={Colors.primary} size="large" />;
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {alerts.map((alert) => (
         <View key={alert.id} style={styles.threatCard}>
           <View style={[styles.threatSeverityBar, { backgroundColor: getSeverityColor(alert.severity) }]} />
@@ -248,7 +248,7 @@ function DeviceTheftTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       <Text style={styles.sectionTitle}>Anti-Theft Protection</Text>
       <View style={styles.theftGrid}>
         {features.map((f) => (
@@ -315,7 +315,7 @@ function ScreenTimeTab() {
   };
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       <View style={styles.screenTimeHeader}>
         <View>
           <Text style={styles.sectionTitle}>Weekly Overview</Text>

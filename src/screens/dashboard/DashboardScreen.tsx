@@ -50,7 +50,7 @@ export default function DashboardScreen({ navigation }: any) {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Greeting */}
       <View style={styles.greetingSection}>
         <View style={styles.greetingRow}>

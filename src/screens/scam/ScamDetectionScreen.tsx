@@ -78,7 +78,7 @@ function AnalyzeTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       <Text style={styles.sectionTitle}>Paste a suspicious message</Text>
       <TextInput
         style={styles.textArea}
@@ -155,7 +155,7 @@ function AlertsTab() {
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} color={Colors.primary} size="large" />;
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {alerts.map((alert) => (
         <View key={alert.id} style={styles.alertCard}>
           <View style={[styles.alertBorder, { backgroundColor: getSeverityColor(alert.severity) }]} />
@@ -198,7 +198,7 @@ function IndiaScamsTab() {
   if (loading) return <ActivityIndicator style={{ marginTop: 40 }} color={Colors.primary} size="large" />;
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {scams.map((scam) => (
         <View key={scam.id} style={styles.indiaCard}>
           <View style={styles.indiaHeader}>
@@ -291,7 +291,7 @@ function QuizTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Progress */}
       <View style={styles.progressRow}>
         <Text style={styles.progressLabel}>Question {current + 1}/{questions.length}</Text>
@@ -362,7 +362,7 @@ function CommunityTab() {
   const filtered = selectedRegion === 'All' ? scams : scams.filter((s) => s.region === selectedRegion);
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Region Filters */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: Spacing.lg }}>
         {regions.map((region) => (

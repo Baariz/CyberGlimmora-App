@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   statusRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.xs, marginTop: 2 },
   onlineDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: Colors.safe },
   statusText: { fontSize: FontSize.xs, color: Colors.primaryLighter },
-  messageList: { padding: Spacing.lg, paddingBottom: Spacing.sm },
+  messageList: { padding: Spacing.lg, paddingBottom: 140 },
   userBubbleRow: { flexDirection: 'row', justifyContent: 'flex-end', marginBottom: Spacing.md },
   userBubble: { backgroundColor: Colors.primary, borderRadius: BorderRadius.xl, borderBottomRightRadius: Spacing.xs, paddingHorizontal: Spacing.lg, paddingVertical: Spacing.md, maxWidth: '78%' },
   userBubbleText: { fontSize: FontSize.base, color: Colors.white, lineHeight: 21 },

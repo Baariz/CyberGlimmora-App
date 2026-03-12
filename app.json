@@ -37,6 +37,12 @@
         "projectId": "b4dfb717-0e99-4277-a698-58d175167bab"
       }
     },
-    "owner": "vaigai"
+    "owner": "vaigai",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b4dfb717-0e99-4277-a698-58d175167bab"
+    }
   }
 }

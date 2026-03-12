@@ -101,7 +101,7 @@ function ActiveJourneyTab() {
   };
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {/* Map Placeholder */}
       <View style={styles.mapPlaceholder}>
         <Ionicons name="navigate" size={48} color={Colors.white} />
@@ -180,7 +180,7 @@ function TrustedContactsTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       <TouchableOpacity style={styles.addButton}>
         <Ionicons name="person-add-outline" size={18} color={Colors.white} />
         <Text style={styles.addButtonText}>Add Trusted Contact</Text>
@@ -252,7 +252,7 @@ function HistoryTab() {
   };
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {history.map((entry, i) => (
         <View key={entry.id} style={styles.historyEntry}>
           {/* Timeline */}
@@ -320,7 +320,7 @@ function SOSSettingsTab() {
   }
 
   return (
-    <ScrollView style={styles.tabContent} showsVerticalScrollIndicator={false}>
+    <ScrollView style={styles.tabContent} contentContainerStyle={{ paddingBottom: 140 }} showsVerticalScrollIndicator={false}>
       {settings.map((setting) => (
         <View key={setting.key} style={styles.settingRow}>
           <View style={{ flex: 1 }}>
