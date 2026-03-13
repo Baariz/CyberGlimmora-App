@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import Base, engine
-from app.routers import sms
+from app.routers import sms, auth        # ← add auth here
+from app.models import user              # ← import so table gets created
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])   # ← add
 app.include_router(sms.router, prefix="/api/v1/sms", tags=["SMS"])
 
 @app.get("/")

@@ -3,3 +3,6 @@ uvicorn[standard]
 sqlalchemy
 pydantic-settings
 google-genai
+google-auth
+python-jose[cryptography]
+httpx
